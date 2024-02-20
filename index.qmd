@@ -1,0 +1,40 @@
+---
+title: "Pranav Tej Reddy
+        Annareddy"
+---
+
+![](images/Pranav_pic-01.JPG){fig-align="left" width="100"}
+
+### **About Me**
+
+> Hello! My name is Pranav Tej Reddy Annareddy. I am a dedicated and driven individual with a passion for technology and a strong desire to make a positive impact through my work. Currently, I am pursuing my Master's program in Data Analytics Engineering at George Mason University, which perfectly aligns with my interests and previous experiences. I am eagerly looking forward to delving deeper into the field of data analytics and undertaking substantial projects that will contribute to my technical growth and career advancement.
+
+### **Education**
+
+> I completed my Bachelor of Technology in Computer Science and Engineering from Vardhaman College of Engineering in Hyderabad, Telangana, graduating with a commendable GPA of 7.67. Prior to that, I pursued my Intermediate education at Pine Grove Junior College and completed my high school studies at Sri Chaitanya School, both in Hyderabad, Telangana. These educational experiences have equipped me with a strong foundation in computer science and have nurtured my analytical and problem-solving skills.
+
+### **Experience**
+
+> During my academic journey, I had the opportunity to gain practical experience through internships. At Salesforce in Hyderabad, I served as a Software Developer Intern, where I completed Salesforce Trailhead modules, undertook software development assignments, and gained valuable insights into the Salesforce platform. Additionally, I interned as a Data Science Engineer at Intrainz, where I developed a machine learning model tailored to the company's needs, honed my teamwork and communication skills, and created data-driven presentations.
+
+### **Projects**
+
+> I have worked on several impactful projects that demonstrate my proficiency in various domains of technology. One notable project is the development of an application for Alzheimer's disease detection using Convolutional Neural Networks (CNN), which involved analyzing MRI images to predict the disease. Another significant project is the creation of a customized algorithm for optimizing traffic flow in urban areas, named Customized Gridlock Curb. Furthermore, I developed Career Upgrade, a web application aimed at assisting undergraduate students in finding internships, jobs, and courses to enhance their technical skills.
+
+### **Programming Skills**
+
+> My expertise extends across multiple programming languages, including Python, JavaScript, and SQL. I am proficient in utilizing technologies such as Machine Learning, PowerBI, and Google Cloud Platform (GCP) to develop innovative solutions to complex problems.
+
+### **Achievements**
+
+> I take pride in my achievements both academically and in extracurricular activities. I was a part of the runner-up cricket team in an interschool competition and was awarded the best batsman medal in an intercollege competition, showcasing my dedication and sportsmanship.
+
+### **Certifications**
+
+> To further augment my skills and knowledge, I have pursued certifications in Applied Machine Learning in Python, Neural Networks and Deep Learning, Mathematics for Data Science and Machine Learning, and Data Science in Python.
+
+### **Interests**
+
+> Outside of academics and work, I have a variety of interests that keep me engaged and balanced. I enjoy traveling to explore new places, playing cricket to stay active, watching movies for entertainment, and delving into finance to broaden my understanding of the economic landscape.
+
+| I am a motivated and enthusiastic individual with a strong academic background, diverse experiences, and a keen interest in data analytics. I am excited about the opportunities that lie ahead in my Master's program at George Mason University and am eager to make meaningful contributions to the field of data analytics engineering.
