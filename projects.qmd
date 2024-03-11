@@ -1,3 +1,170 @@
 ---
-title: "projects"
+title: "Codes"
 ---
+
+```{r warning=FALSE}
+library(ggplot2)
+library(plotly)
+library(dplyr)
+
+# Load the dataset
+dataset <- read.csv("dataset.csv")
+
+# Rename columns with simpler names
+names(dataset) <- c("Country", "Total_payment", "Income_tax", "Employee_social_security_contributions", "Gross_wage_earnings", "Wages_earning_After_Taxes", "Tax_amount")
+
+# Calculate Total_payment(%)
+dataset$Total_payment <- dataset$Income_tax + dataset$Employee_social_security_contributions
+
+# Create the bar graph
+p <- ggplot(dataset, aes(x = reorder(Country, Total_payment), y = Total_payment, 
+                         text = paste(Country, "<br>",
+                                    "Total Payment (%)<br>",
+                                      Total_payment, "%"))) +
+  geom_bar(stat = "identity", aes(fill = "Total Payment (%)")) +
+  geom_bar(stat = "identity", aes(y = Income_tax, fill = "Income Tax (%)",
+                                  text = paste(Country, "<br>",
+                                              "Income Tax (%)<br>",
+                                                Income_tax, "%"))) +
+  geom_bar(stat = "identity", aes(y = Employee_social_security_contributions, fill = "Employee Social Security Contributions (%)",
+                                  text = paste(Country, "<br>",
+                                              "Employee Social Security Contributions (%)<br>",
+                                                Employee_social_security_contributions, "%"))) +
+  scale_fill_manual(values = c("Total Payment (%)" = "#7B68EE", "Income Tax (%)" = "#FFA07A", "Employee Social Security Contributions (%)" = "#20B2AA")) +
+  labs(title = "Income Tax and Employee Social Security Contributions by Country",
+       x = "Country",
+       y = "Percentage (%)",
+       fill = "") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(legend.position = "top") +
+  guides(fill = guide_legend(title = "Type of Tax")) 
+
+# Add interactivity using plotly
+p <- ggplotly(p, tooltip = "text")
+
+# Display the plot
+p
+```
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(plotly)
+library(dplyr)
+
+# Read the CSV file
+d <- read.csv("dataset.csv", stringsAsFactors = FALSE)
+
+# Convert Tax_amount column to numeric
+d$Tax_amount <- as.numeric(gsub(",", "", d$Tax_amount))
+
+# Sort the data by Tax_amount in ascending order
+d_sorted <- d[order(d$Tax_amount), ]
+
+# Define visually pleasing colors for each country
+country_colors <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", 
+                    "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5", "#c49c94", 
+                    "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5", "#393b79", "#ff9896", "#aec7e8", "#17becf", 
+                    "#ffbb78", "#98df8a", "#ff7f0e", "#7f7f7f", "#c49c94", "#2ca02c", "#9467bd", "#8c564b", 
+                    "#e377c2", "#1f77b4", "#d62728", "#7fc97f")  
+
+# Create a ggplot object
+gg <- ggplot(d_sorted, aes(x = reorder(Country, Tax_amount), y = Tax_amount, fill = Country, 
+                              text = paste( Country, "<br>Tax Amount:", Tax_amount))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = Tax_amount, y = Tax_amount), 
+            vjust = -0.5, size = 3, position = position_nudge(y = 500), 
+            color = country_colors, fontface = "bold") +  # Place Tax_amount on top of the bar with a gap
+  scale_fill_manual(values = country_colors) +
+  labs(title = "Tax Amount by Country (Ascending Order)",
+       x = "Country",
+       y = "Tax Amount") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+# Convert ggplot object to plotly object
+R <- ggplotly(gg, tooltip = c("text"))
+
+# Print the plot
+R
+```
+
+```{r warning=FALSE}
+# Load your dataset
+d1 <- read.csv("dataset.csv")
+
+# Rename columns with simpler names
+names(d1) <- c("Country", "Total_payment", "Income_tax", "Employee_social_security_contributions", "Gross_wage_earnings", "Wages_earning_After_Taxes", "Tax_amount")
+
+# Remove commas and convert to numeric
+d1$Gross_wage_earnings <- as.numeric(gsub(",", "", d1$Gross_wage_earnings))
+d1$Wages_earning_After_Taxes <- as.numeric(gsub(",", "", d1$Wages_earning_After_Taxes))
+d1$Tax_amount <- as.numeric(gsub(",", "", d1$Tax_amount))
+
+# Assign colors to countries
+country_colors <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", 
+                    "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5", "#c49c94", 
+                    "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5", "#393b79", "#ff9896", "#aec7e8", "#17becf", 
+                    "#ffbb78", "#98df8a", "#ff7f0e", "#7f7f7f", "#c49c94", "#2ca02c", "#9467bd", "#8c564b", 
+                    "#e377c2", "#1f77b4", "#d62728", "#7fc97f")
+
+# Create a scatter plot with adjusted sizes based on Tax Amount
+p <- ggplot(d1, aes(x = Gross_wage_earnings, y = Wages_earning_After_Taxes, 
+                    text = paste("Country: ", Country, "<br>Total Payment (%): ", Total_payment, 
+                                 "<br>Income Tax (%): ", Income_tax, 
+                                 "<br>Employee Social Security Contributions (%): ", Employee_social_security_contributions, 
+                                 "<br>Gross Wage Earnings: ", Gross_wage_earnings, 
+                                 "<br>Wages Earning After Taxes: ", Wages_earning_After_Taxes, 
+                                 "<br>Tax Amount: ", Tax_amount), 
+                    size = Tax_amount, fill = Country)) +
+  geom_point(shape = 21) + # Custom point shape
+  scale_size_continuous(range = c(1, 10), guide = FALSE) + # Hide size legend
+  scale_fill_manual(values = country_colors, name = "Country", guide = "legend") + # Specify legend label for fill and hide size legend
+  labs(x = "Gross Wage Earnings", y = "Wages Earning After Taxes", title = "Gross Wage Earnings vs. Wages Earning After Taxes") +
+  theme_minimal() +
+  scale_x_continuous(breaks = seq(0, 80000, by = 10000), limits = c(0, 80000)) +
+  scale_y_continuous(breaks = seq(0, 80000, by = 10000), limits = c(0, 80000)) +
+  theme(legend.position = "right") # Show the legend on the right side
+
+# Convert to interactive plot with plotly
+pp <- ggplotly(p, tooltip = "text")
+
+# Display the plot
+pp
+```
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(tidyr) # Add this line to load the tidyr package
+
+# Assuming 'dataset' is already loaded and exists in your environment
+dataset$Gross_wage_earnings <- as.numeric(gsub(",", "", gsub("\\$", "", dataset$Gross_wage_earnings)))
+dataset$Wages_earning_After_Taxes <- as.numeric(gsub(",", "", gsub("\\$", "", dataset$Wages_earning_After_Taxes)))
+
+# It might be necessary to ensure 'Country' is a factor for plotting
+dataset$Country <- factor(dataset$Country, levels = unique(dataset$Country))
+
+# Reshape the data for easier plotting
+data <- dataset %>%
+  select(Country, Gross_wage_earnings, Wages_earning_After_Taxes) %>%
+  pivot_longer(cols = -Country, names_to = "Earnings_Type", values_to = "Amount")
+
+# Create the ggplot
+q <- ggplot(data, aes(x = Country, y = Amount, fill = Earnings_Type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("Gross_wage_earnings" = "#69b3a2", "Wages_earning_After_Taxes" = "#404080")) +
+  labs(title = "Gross Wage Earnings vs. Wages Earning After Taxes by Country",
+       x = "Country",
+       y = "Amount") +
+  theme(axis.text.x = element_text(angle = 65, vjust = 0.6))
+
+# Convert ggplot object to plotly for interactivity
+p_interactive <- ggplotly(q)
+
+# Show the plot
+p_interactive
+
+```
